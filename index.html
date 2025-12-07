@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cancer Awareness & Donation Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <h1 class="nav-logo"><i class="fas fa-ribbon"></i> Cancer Awareness</h1>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle-input">
+      <label for="menu-toggle" class="menu-toggle-label">
+        <span class="hamburger"></span>
+      </label>
+      <ul class="nav-links">
+        <li><a href="#landing">Home</a></li>
+        <li><a href="#dashboard-section">Dashboard</a></li>
+        <li><a href="#donate-section">Donation</a></li>
+        <li><a href="#contact-section">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="landing" class="hero-section">
+    <div class="overlay">
+      <h1><i class="fas fa-ribbon"></i> Cancer Awareness & Support</h1>
+      <p>Unite with us to support cancer research and patients globally. Every step counts.</p>
+      <a href="#donate-section" class="cta-button">Donate Now</a>
+    </div>
+  </section>
+  
+  <section class="quote-section">
+    <div class="glass quote-container">
+        <blockquote><i class="fas fa-quote-left"></i> The greatest glory in living lies not in never falling, but in rising every time we fall. <i class="fas fa-quote-right"></i></blockquote>
+        <cite>- Nelson Mandela</cite>
+        <p>Your support empowers countless lives facing this journey.</p>
+    </div>
+  </section>
+
+  <section id="dashboard-section" class="dashboard-section">
+    <h2 class="section-title"><i class="fas fa-chart-bar"></i> Impact Dashboard</h2>
+    
+    <div class="stats-grid">
+      <div class="glass stat-card pink">
+        <i class="fas fa-dollar-sign icon"></i>
+        <h3>Total Raised</h3>
+        <p class="stat-value" id="totalDonations">₹5600</p>
+      </div>
+      <div class="glass stat-card purple">
+        <i class="fas fa-users icon"></i>
+        <h3>Total Donors</h3>
+        <p class="stat-value" id="totalDonors">5</p>
+      </div>
+      <div class="glass stat-card yellow">
+        <i class="fas fa-bullseye icon"></i>
+        <h3>Next Goal</h3>
+        <p class="stat-value">₹10,000</p>
+      </div>
+    </div>
+    
+    <div class="goal-progress-container glass">
+        <h3>Current Funding Progress</h3>
+        <div class="progress-bar-shell">
+            <div class="progress-bar-fill" style="width: 56%;"></div>
+        </div>
+        <p><strong>56%</strong> of our goal reached. Thank you!</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="glass chart-box">
+          <h3><i class="fas fa-chart-line"></i> Donation Trends</h3>
+          <canvas id="donationChart"></canvas>
+        </div>
+        
+        <div class="glass table-box">
+          <h3><i class="fas fa-receipt"></i> Recent Donations</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="donationTable">
+                </tbody>
+          </table>
+        </div>
+    </div>
+  </section>
+
+  <section id="donate-section" class="donate-section">
+      <h2 class="section-title"><i class="fas fa-hand-holding-heart"></i> Make a Difference Today</h2>
+      <div class="glass donate-container">
+          <p>Your contribution directly funds life-saving research and patient care.</p>
+          <form id="donationForm">
+              <input type="text" placeholder="Your Name (Optional)">
+              <input type="number" placeholder="Donation Amount (₹)" required>
+              <button type="submit" class="donate-button"><i class="fas fa-donate"></i> Donate Now</button>
+          </form>
+          <p class="success-message hidden" id="successMessage">Thank you for your generous donation!</p>
+      </div>
+  </section>
+
+  <section id="contact-section" class="contact-section">
+  <h2 class="section-title"><i class="fas fa-paper-plane"></i> Get In Touch</h2>
+
+  <div class="contact-wrapper">
+    <!-- Form Box -->
+    <div class="contact-form glass">
+      <form class="contact-form-grid">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group full">
+          <label>Your Message</label>
+          <textarea rows="5" placeholder="Write your message..." required></textarea>
+        </div>
+
+        <button type="submit" class="contact-btn">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+
+    <!-- Info Box -->
+    <div class="contact-info glass">
+      <h3>Contact Information</h3>
+
+      <div class="info-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>123 Hope Lane, Wellness City</span>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-phone"></i>
+        <span>+91 98765 43210</span>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-envelope"></i>
+        <span>support@cancerawareness.org</span>
+      </div>
+
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <h2>Cancer Awareness & Support</h2>
+      <p>Together, we care. Together, we heal.</p>
+    </div>
+
+    <!-- Links -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#donation-section">Donations</a>
+      <a href="#contact-section">Contact</a>
+    </div>
+
+    <!-- Social -->
+    <div class="footer-social">
+      <h3>Connect With Us</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Cancer Awareness & Support | All Rights Reserved
+    <p>Nazneen Shakil Khan</p>
+  </div>
+</footer>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1096 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --color-pink: #e91e63;
+  --color-purple: #b19cd9;
+  --color-yellow: #f4d03f;
+  --color-white: #fefefe;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  /* Softer, darker, less contrasting background */
+  background: linear-gradient(135deg, #2c253d, #443c5b, #2c253d, #443c5b);
+  background-size: 200% 200%; /* Subtler movement */
+  animation: gradientMove 15s ease infinite;
+  color: var(--color-white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Glassmorphism Base Style */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px var(--shadow-dark);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px var(--shadow-dark);
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(30px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 1000;
+  padding: 15px 30px;
+  box-shadow: 0 2px 10px var(--shadow-dark);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-pink);
+  text-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--color-yellow);
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: var(--color-yellow);
+  text-shadow: 0 0 8px rgba(244, 208, 63, 0.7);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+/* Responsive Menu Toggle */
+.menu-toggle-input {
+    display: none; /* Hides the checkbox */
+}
+
+.menu-toggle-label {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    z-index: 1010;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transition: transform 0.3s ease;
+    align-self: center; /* Center vertically with logo */
+}
+
+.hamburger, .hamburger::before, .hamburger::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--color-yellow);
+    border-radius: 3px;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger::before {
+    top: -10px;
+}
+
+.hamburger::after {
+    top: 10px;
+}
+
+/* Transformation on Checkbox Check */
+.menu-toggle-input:checked ~ .menu-toggle-label .hamburger {
+    background: transparent;
+}
+
+.menu-toggle-input:checked ~ .menu-toggle-label .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.menu-toggle-input:checked ~ .menu-toggle-label .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+/* Hero/Landing Section */
+.hero-section {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1587502536263-c9c76c6ba9bc') center/cover no-repeat;
+  position: relative;
+  animation: fadeIn 2s ease-in;
+  padding-top: 80px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay h1 {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px var(--color-pink);
+}
+
+.cta-button {
+  background: linear-gradient(45deg, var(--color-yellow), var(--color-pink));
+  color: white;
+  padding: 18px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  animation: pulse 2s infinite;
+  margin-top: 20px;
+  border: none;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(244, 208, 63, 0.7);
+  animation: none;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(244, 208, 63, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(244, 208, 63, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 208, 63, 0); }
+}
+
+/* Quote Section */
+.quote-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.quote-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.quote-container blockquote {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  color: var(--color-pink);
+  padding: 40px;
+  border-left: 5px solid var(--color-yellow);
+}
+
+.quote-container blockquote i {
+    color: var(--color-yellow);
+    margin: 0 10px;
+    font-size: 1.5rem;
+}
+
+.quote-container cite {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-yellow);
+  margin-top: 15px;
+}
+
+.quote-container p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 40px auto 0;
+}
+
+/* Dashboard */
+.dashboard-section {
+  max-width: 1400px;
+  margin: auto;
+  padding: 60px 20px;
+  animation: fadeIn 1s ease-in 0.5s both;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+  color: var(--color-white);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.stat-card .icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: var(--color-white);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.stat-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.stat-card .stat-value {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.pink .icon { color: var(--color-pink); }
+.purple .icon { color: var(--color-purple); }
+.yellow .icon { color: var(--color-yellow); }
+
+
+/* Goal Progress */
+.goal-progress-container {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+.goal-progress-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.progress-bar-shell {
+    height: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-purple), var(--color-pink));
+    transition: width 1s ease-out;
+    border-radius: 10px;
+}
+.goal-progress-container p strong, .goal-progress-container p span {
+    color: var(--color-yellow);
+    font-weight: 600;
+}
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.chart-box {
+  /* Added height for chart canvas */
+  height: 400px;
+  padding: 30px;
+}
+.table-box {
+  padding: 30px;
+}
+
+.chart-box h3, .table-box h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: var(--color-yellow);
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+thead {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  border-radius: 10px 10px 0 0;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr {
+  transition: background 0.3s ease;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Donation Form Section */
+.donate-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.donate-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 40px;
+}
+
+.donate-container p {
+    margin-bottom: 20px;
+}
+
+#donationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* ===== DASHBOARD GRID RESPONSIVE FIX ===== */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  align-items: stretch;
+}
+
+/* Chart Box */
+.chart-box {
+  height: auto;
+  min-height: 380px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 300px;
+}
+
+/* Table Box */
+.table-box {
+  padding: 30px;
+  overflow-x: auto;
+}
+
+/* Table Improvements */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  min-width: 320px;
+}
+
+th, td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+thead {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+tbody tr {
+  transition: background 0.25s ease;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== TABLET VIEW (1024px and below) ===== */
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .chart-box,
+  .table-box {
+    padding: 25px;
+  }
+}
+
+/* ===== MOBILE VIEW (768px and below) ===== */
+
+@media (max-width: 768px) {
+  .chart-box h3,
+  .table-box h3 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .chart-box canvas {
+    max-height: 250px;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== EXTRA SMALL MOBILES (480px and below) ===== */
+
+@media (max-width: 480px) {
+  .chart-box canvas {
+    max-height: 200px;
+  }
+
+  th, td {
+    padding: 12px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+
+
+
+/* Contact & Donation Input Styling */
+input, textarea {
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(244, 208, 63, 0.5); /* Slightly stronger border */
+  outline: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle box shadow on input */
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus, textarea:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-yellow);
+  box-shadow: 0 0 15px rgba(244, 208, 63, 0.8), 0 0 5px rgba(0, 0, 0, 0.5); /* Stronger focus shadow */
+}
+
+/* Button Styling */
+button, .donate-button {
+  padding: 16px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(45deg, var(--color-yellow), var(--color-pink));
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+button:hover, .donate-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(244, 208, 63, 0.5);
+}
+
+.success-message {
+    margin-top: 15px;
+    color: var(--color-yellow);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px;
+    border: 1px dashed var(--color-yellow);
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.hidden {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.contact-grid-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Form is 2/3, Info is 1/3 */
+  gap: 30px;
+  text-align: left;
+}
+
+/* 1. Form Container - Clean, slightly darker glass for focus */
+.contact-form-container {
+    padding: 60px; /* Increased padding */
+    background: rgba(255, 255, 255, 0.08); /* Slightly less transparent */
+    border-left: 5px solid var(--color-yellow); /* Prominent focus border */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    border-radius: 10px;
+}
+
+/* 2. Info Box - High contrast, dedicated brand color */
+.contact-info-box {
+    padding: 50px;
+    background: #5b477e; /* Solid, dark purple from gradient for professionalism */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-info-box h3 {
+    color: var(--color-yellow);
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.contact-info-box p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-info-box i {
+    color: var(--color-pink);
+    margin-right: 10px;
+    width: 20px;
+    transition: color 0.3s ease;
+}
+
+/* New: Hover effect on info links */
+.contact-info-box p a, .contact-info-box p {
+    cursor: default; /* Remove pointer on address/phone */
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+.contact-info-box p:hover i {
+    color: var(--color-yellow);
+}
+
+.social-links {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-yellow);
+}
+
+.map-placeholder {
+    height: 150px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+
+/* Updated Mobile Responsiveness */
+@media (max-width: 1000px) {
+    /* Existing Dashboard Fix */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Contact Section Stacking for Tablets/Mobiles */
+    .contact-grid-wrapper {
+        grid-template-columns: 1fr; /* Stacks the form and info box */
+        gap: 20px;
+    }
+    .contact-form-container {
+        padding: 40px;
+    }
+    .contact-info-box {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+  /* 1. Navbar Mobile Fix */
+  .nav-container {
+      flex-wrap: wrap; /* Allows items to wrap */
+      justify-content: space-between;
+  }
+  
+  /* Hide links by default */
+  .nav-links {
+    display: none; 
+    flex-direction: column;
+    width: 100%;
+    /* Use solid color for better contrast on mobile menu */
+    background: #2c253d; 
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    position: absolute;
+    top: 70px; /* Below the navbar header */
+    left: 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-links li {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-links li:last-child {
+      border-bottom: none;
+  }
+  
+  .nav-links a {
+    font-size: 1.1rem;
+  }
+  
+  /* Show hamburger menu */
+  .menu-toggle-label {
+      display: block;
+  }
+  
+  /* Show menu when checked */
+  .menu-toggle-input:checked ~ .nav-links {
+      display: flex;
+  }
+  
+  /* 2. Other Mobile Fixes */
+  .overlay h1 {
+    font-size: 2.5rem;
+  }
+  .overlay p {
+    font-size: 1rem;
+  }
+  .section-title {
+      font-size: 2rem;
+  }
+  .quote-container blockquote {
+    font-size: 1.3rem;
+  }
+  .stat-card .stat-value {
+    font-size: 2.5rem;
+  }
+  .dashboard-section {
+      padding: 40px 10px;
+  }
+  .glass {
+      padding: 20px;
+  }
+}
+
+
+
+/* ====== CONTACT SECTION CLEAN UI ====== */
+
+.contact-section {
+  padding: 80px 20px;
+}
+
+.contact-wrapper {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 30px;
+}
+
+/* Form Box */
+.contact-form {
+  padding: 50px;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full {
+  grid-column: span 2;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-yellow);
+  box-shadow: 0 0 10px rgba(244,208,63,0.4);
+}
+
+/* Button */
+.contact-btn {
+  grid-column: span 2;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, var(--color-yellow), var(--color-pink));
+  border: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(244,208,63,0.5);
+}
+
+/* Info Box */
+.contact-info {
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-info h3 {
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  color: var(--color-yellow);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.info-item i {
+  color: var(--color-pink);
+  font-size: 1.1rem;
+}
+
+.info-item:hover {
+  transform: translateX(5px);
+  color: var(--color-yellow);
+}
+
+.social-links {
+  margin-top: 25px;
+  display: flex;
+  gap: 16px;
+}
+
+.social-links a {
+  font-size: 1.4rem;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--color-yellow);
+  transform: translateY(-3px);
+}
+
+/* ====== MOBILE RESPONSIVE FIXES ====== */
+
+@media (max-width: 900px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full,
+  .contact-btn {
+    grid-column: span 1;
+  }
+}
+
+
+/* ===== FOOTER ===== */
+
+.site-footer {
+  margin-top: 80px;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.footer-brand h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.footer-links h3,
+.footer-social h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: var(--color-yellow);
+}
+
+.footer-links a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.85;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-pink);
+  transform: translateX(5px);
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  font-size: 1.4rem;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--color-yellow);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  opacity: 0.7;
+}
+
+/* ===== DONATION TABLE RESPONSIVE ===== */
+
+.donation-section {
+  padding: 80px 20px;
+}
+
+.donation-table-wrapper {
+  max-width: 1100px;
+  margin: auto;
+  overflow-x: auto;
+}
+
+.donation-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.donation-table th,
+.donation-table td {
+  padding: 16px;
+  text-align: left;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  white-space: nowrap;
+}
+
+.donation-table th {
+  color: var(--color-yellow);
+  font-weight: 600;
+}
+
+.donation-table tr {
+  transition: 0.3s ease;
+}
+
+.donation-table tbody tr:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Status Badges */
+.success {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.pending {
+  color: #facc15;
+  font-weight: 600;
+}
+
+/* ===== MOBILE CARD VIEW FOR TABLE ===== */
+
+@media (max-width: 768px) {
+  .donation-table {
+    min-width: 100%;
+    border: none;
+  }
+
+  .donation-table thead {
+    display: none;
+  }
+
+  .donation-table tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  .donation-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: none;
+  }
+
+  .donation-table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-yellow);
+  }
+}
+
+/* ===== FOOTER MOBILE FIX ===== */
+
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
